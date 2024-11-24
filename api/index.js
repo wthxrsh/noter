@@ -39,6 +39,5 @@ app.get('/file/:filename', function(req,res){
         res.render('show', {filename: req.params.filename, filedata: filedata});
     })
 })
-app.listen(8000, function(res, req){
-    console.log("server started at 8000")
-});
+
+module.exports = app;
