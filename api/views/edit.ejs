@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Noter</title>
+</head>
+<body>
+    <div class="main w-full min-h-screen bg-zinc-90 p-10 text-white bg-zinc-900">
+        <div class="form p-10 text-white">
+            <form action="/edit" method="post">
+                <input  type="text" class="block w-full rounded-md outline-none bg-zinc-800 px-5 py-2" placeholder="<%=filename%>" name="titleUpdate" value="<%=filename%>">
+                <textarea class="block w-full rounded-md outline-none px-5 mt-2 bg-zinc-800 py-2 resize-none" placeholder="" id="" name="detailsUpdate"><%=filedata%></textarea>
+                <input class="mt-2 bg-blue-600 px-5 py-2 rounded-md" type="submit" value="update task">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

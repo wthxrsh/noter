@@ -69,5 +69,39 @@ app.get('/file/:filename', function (req, res) {
     });
 });
 
+app.get('/edit/:filename', function (req, res) {
+    const filePath = path.join(filesDir, req.params.filename);
+        fs.readFile(filePath, "utf-8", function(err, filedata){
+            if (err) {
+                console.error("Error reading file:", err);
+                return res.status(500).send("Error reading file");
+                
+            }
+            res.render('edit', {filename: req.params.filename.split('.')[0] , filedata: filedata})
+        });
+        fs.unlink(filePath, function(err){
+            if (err) {
+                console.error("Error deleting file:", err);
+            }
+        });
+});
+
+app.post('/edit/', function(req,res){
+    console.log(req.body.titleUpdate , req.body.detailsUpdate,)
+    const fileName = req.body.titleUpdate.split(' ').join('')+".txt";
+    console.log(fileName)
+    const filePath = path.join(filesDir, `${fileName}`);
+    fs.writeFile(filePath, req.body.detailsUpdate, function(err){
+        if(err){
+            console.error("Error creating file");
+        }
+    })
+    res.redirect('/')
+})
+
+app.listen(8000, function () {
+    console.log("server started at 8000")
+})
+
 // Exporting the app (for Vercel serverless function)
 module.exports = app;
